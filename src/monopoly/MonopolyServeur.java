@@ -16,6 +16,7 @@ public class MonopolyServeur extends UnicastRemoteObject implements MonopolyInte
 	//private ArrayList<Color> couleur;
 	private TreeMap<String,Color> couleur;
 	private int i;
+	private int tour; //numero de joueur en cours de jeu
 
 
 	
@@ -29,6 +30,7 @@ public class MonopolyServeur extends UnicastRemoteObject implements MonopolyInte
 		couleur.put("Vert",Color.GREEN);
 		couleur.put("Gris",Color.GRAY);
 		i=0;
+		tour=1;
 
 	}
 	
@@ -43,7 +45,7 @@ public class MonopolyServeur extends UnicastRemoteObject implements MonopolyInte
 			registry.rebind("MONOPOLY", monopoly);
 			System.out.println("monopoly enregistré, attente de connexions");
 		}
-		catch (Exception e) 
+		catch (Exception e)
 		{
 			System.err.println("Monopoly serveur exception: " + e.getMessage());
 		}
@@ -61,9 +63,9 @@ public class MonopolyServeur extends UnicastRemoteObject implements MonopolyInte
 
 
 	@Override
-	public Joueur getJoueur(int numeroJoueur) throws RemoteException 
+	public TreeMap<Integer,Joueur> getJoueurs() throws RemoteException 
 	{
-		return(joueurs.get(numeroJoueur));
+		return(this.joueurs);
 		
 	}
 
@@ -152,6 +154,31 @@ public class MonopolyServeur extends UnicastRemoteObject implements MonopolyInte
 		return false;
 	}
 	
+	public synchronized void setTour( int tour ) throws RemoteException
+	{
+		this.tour = tour;
+	}
 	
+	public synchronized int getTour() throws RemoteException
+	{
+		return(this.tour);
+	}
+	
+	public synchronized boolean jouer(int numeroJoueur) throws RemoteException, InterruptedException
+	{
+
+			while(true)
+			{
+				if(numeroJoueur==this.tour)
+				{
+					return true;
+				}
+				else
+				{
+					Thread.sleep(1000);
+				}
+			}
+
+	}
 	
 }
