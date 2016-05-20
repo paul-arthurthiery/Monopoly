@@ -19,4 +19,5 @@ public interface MonopolyInterface extends Remote
 	void setTour( int tour ) throws RemoteException;
 	int getTour() throws RemoteException;
 	boolean jouer(int numeroJoueur) throws RemoteException, InterruptedException;
+	TreeMap<Integer,CaseStandard> getCases() throws RemoteException;
 }

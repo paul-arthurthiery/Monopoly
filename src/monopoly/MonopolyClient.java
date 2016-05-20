@@ -19,8 +19,9 @@ public class MonopolyClient
 			MonopolyInterface monopolyInterface = (MonopolyInterface)registry.lookup("MONOPOLY");
 			System.out.println("monopolyInterface trouvé");
 			
+			new Fenetre_connexion(monopolyInterface);
 			int monNumero = 0;
-			System.out.println("Entrez votre couleur : ");
+	/*		System.out.println("Entrez votre couleur : ");
 			BufferedReader buffer01 = new BufferedReader( new InputStreamReader( System.in ) );
 			String couleur = buffer01.readLine();
 			Color a = monopolyInterface.getCouleur(couleur);
@@ -28,7 +29,7 @@ public class MonopolyClient
 			BufferedReader buffer02 = new BufferedReader( new InputStreamReader( System.in ) );
 			String nom = buffer02.readLine();
 			monopolyInterface.setJoueur(a,nom);
-			int nomNumero = monopolyInterface.getJoueurs().size();
+*/			monNumero = monopolyInterface.getJoueurs().size();
 			System.out.println("Joueur créé");
 			System.out.println("Êtes vous prêt ? ");
 			BufferedReader buffer03 = new BufferedReader( new InputStreamReader( System.in ) );

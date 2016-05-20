@@ -1,0 +1,40 @@
+Départ,1,0,0,0
+Meditaranean Avenue,2,1,0,60
+Community Chest,3,0,0,0
+Baltic Avenue,4,1,0,60
+Income Tax,5,0,0,0
+Reading Railroad,6,1,0,200
+Oriental Avenue,7,1,0,100
+Chance,8,0,0,0
+Vermont Avenue,9,1,0,100
+Connecticut Avenue,10,1,0,120
+Jail,11,0,0,0
+St. Charles Place,12,1,0,140
+Electric Company,13,1,0,150
+States Avenue,14,1,0,140
+Virginia Avenue,15,1,0,160
+Pennsylvania Railroad,16,1,0,200
+St. James Place,17,1,0,180
+Community Chest,18,0,0,0
+Tennesse Avenue,19,1,0,180
+New York Avenue,20,1,0,200
+Free Parking,21,0,0,0
+Kentucky Avenue,22,1,0,220
+Chance,23,0,0,0
+Indiana Avenue,24,1,0,220
+Illinois Avenue,25,1,0,240
+B&O Railroad,26,1,0,200
+Atlantic Avenue,27,1,0,260
+Ventnor Avenue,28,1,0,260
+Water Works,29,1,0,150
+Marvin Gardens,30,1,0,280
+Go To Jail,31,0,0,0
+Pacific Avenue,32,1,0,300
+North Carolina Avenue,33,1,0,300
+Community Chest,34,0,0,0
+Pennsylvania Avenue,35,1,0,320
+Short Line,36,1,0,200
+Chance,37,0,0,0
+Park Place,38,1,0,350
+Luxury Tax,39,0,0,0
+Boardwalk,40,1,0,400
