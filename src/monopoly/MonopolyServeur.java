@@ -1,6 +1,9 @@
 package monopoly;
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -8,6 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeMap;
+
 
 public class MonopolyServeur extends UnicastRemoteObject implements MonopolyInterface
 {
@@ -49,6 +53,10 @@ public class MonopolyServeur extends UnicastRemoteObject implements MonopolyInte
 		{
 			System.err.println("Monopoly serveur exception: " + e.getMessage());
 		}
+		
+		
+		
+		
 	}
 
 
@@ -179,6 +187,65 @@ public class MonopolyServeur extends UnicastRemoteObject implements MonopolyInte
 				}
 			}
 
+	}
+	
+	public TreeMap<Integer,CaseStandard> getCases() throws RemoteException
+	{
+		return this.casesStandards;
+	}
+	
+	public synchronized TreeMap<Integer, CaseStandard> generateCases() throws RemoteException
+	{
+		BufferedReader fichier = null;
+		
+			try 
+			{
+				fichier = new BufferedReader( new FileReader( "/home/eleves/2019/yxie/workspace/monopoly/src/monopoly/caseStandard.txt" ) );
+				String ligne;
+				while((ligne = fichier.readLine()) != null)
+				{
+					String[] mots = ligne.split(",");
+					CaseStandard nouvelleCase = new CaseStandard(mots[0], Integer.parseInt(mots[1]), Integer.parseInt(mots[2]), Integer.parseInt(mots[3]), null, Integer.parseInt(mots[4]));
+					this.casesStandards.put(Integer.parseInt(mots[1]), nouvelleCase);
+				}
+			} 
+			catch (IOException e) 
+			{
+			e.printStackTrace();
+			}
+			return casesStandards;
+	}
+	
+	public synchronized Joueur perdre(TreeMap<Integer,Joueur> joueurs) throws RemoteException
+	{
+		Iterator <Integer> it = joueurs.keySet().iterator();
+		Joueur perdant = null;
+		while (it.hasNext())
+		{
+			Integer cle = it.next();
+			int solde = joueurs.get(cle).getSolde();
+			if(solde <= 0)
+			{
+				perdant = joueurs.get(cle);	
+				joueurs.remove(cle);
+			}
+	
+		}
+
+		return (perdant);
+	}
+	
+	public synchronized void payment(int monNumero) throws RemoteException
+	{
+		Joueur joueur = joueurs.get(monNumero);
+		int position = joueur.getPosition();
+		CaseStandard tile = casesStandards.get(position);
+		if(tile.getCode() == 2 && tile.getBoss() != joueur)
+		{
+			tile.getBoss().addSolde(tile.getPrix());
+			joueur.addSolde((-1)*tile.getPrix());
+		}
+		
 	}
 	
 }

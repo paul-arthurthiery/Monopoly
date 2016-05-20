@@ -9,8 +9,8 @@ public class CaseStandard extends Case
 
 	private int code; //type de case
 	//0 : case vide --- (0,0,null,occupation) ;
-	//1 : possible d'acheter une maison --- (1,0,null,occupation) ;
-	//2 : maison déjà acheté par boss --- (2,maison,boss,occupation);
+	//1 : possible d'acheter la case --- (1,0,null,occupation) ;
+	//2 : case déjà acheté par boss --- (2,maison,boss,occupation);
 	private int maison;
 	private Joueur boss;
 	private TreeMap<Integer,Joueur> occupation;
