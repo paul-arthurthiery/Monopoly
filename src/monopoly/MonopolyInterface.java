@@ -1,4 +1,4 @@
-package monopoly;
+
 
 import java.awt.Color;
 import java.rmi.Remote;
@@ -23,4 +23,5 @@ public interface MonopolyInterface extends Remote
 	Joueur perdre(TreeMap<Integer,Joueur> joueurs) throws RemoteException;
 	void payment(int monNumero) throws RemoteException;
 	void removeJoueur(Joueur ceJoueur) throws RemoteException;
+	TreeMap<Integer, CaseStandard> generateCases() throws RemoteException;
 }

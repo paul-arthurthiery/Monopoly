@@ -1,4 +1,3 @@
-package monopoly;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -51,6 +50,7 @@ public class FenetreJeu extends JFrame implements ActionListener
 		this.ceJoueur = ceJoueur; 
 
 		fenetreJeu = new JFrame("Fenêtre de Jeu");
+		monopolyInterface.generateCases();
 		
 		this.setLayout(new GridBagLayout());
 		this.setSize(1280,980);
@@ -101,7 +101,7 @@ public class FenetreJeu extends JFrame implements ActionListener
 		
 		JPanel droite = new JPanel(); 
 		MyImage image = null;
-		image = new MyImage("board.jpg");
+		image = new MyImage("/Users/Paul-Arthur/Desktop/board.jpg");
 		droite.add(image);
 		if (shouldWeightX) 
 		{
@@ -161,7 +161,7 @@ public class FenetreJeu extends JFrame implements ActionListener
 		        {
 		        	try 
 					{
-		        		
+		        		System.out.println(monopolyInterface.getJoueurs().size());
 						monopolyInterface.removeJoueur(ceJoueur);
 					} 
 					catch (RemoteException e1) 
