@@ -91,7 +91,7 @@ public class MonopolyServeur extends UnicastRemoteObject implements MonopolyInte
 
 
 	@Override
-	public TreeMap<Integer,Joueur> getJoueurs() throws RemoteException 
+	public synchronized TreeMap<Integer,Joueur> getJoueurs() throws RemoteException 
 	{
 		return(this.joueurs);
 		
@@ -177,20 +177,27 @@ public class MonopolyServeur extends UnicastRemoteObject implements MonopolyInte
 	public synchronized void setJoueur(Color couleur, String nom) throws RemoteException
 	{
 		Iterator <Integer> it = joueurs.keySet().iterator();
+		Integer cle = 0;
 		while (it.hasNext())
 		{
-			Integer cle = it.next();
+			cle = it.next();
 			String name = joueurs.get(cle).getNom();
-			if(name==nom)
+			Color coul = joueurs.get(cle).getCouleur();
+			if(name==nom )
 			{
 				System.err.println("Ce nom de joueur existe déjà");
 			}
-			else
+			else if(coul==couleur)
 			{
-				joueurs.put(joueurs.size()+1,new Joueur(nom,couleur));
+				System.err.println("Cette couleur est déjà prise");
 			}
 		}
-	}
+			
+		
+			joueurs.put(joueurs.size()+1,new Joueur(nom,couleur));
+			
+		}
+	
 	
 	public synchronized void removeJoueur(Joueur ceJoueur) throws RemoteException
 	{
@@ -293,12 +300,25 @@ public class MonopolyServeur extends UnicastRemoteObject implements MonopolyInte
 		Joueur joueur = joueurs.get(monNumero);
 		int position = joueur.getPosition();
 		CaseStandard tile = casesStandards.get(position);
-		if(tile.getCode() == 2 && tile.getBoss() != joueur)
+		switch(tile.getCode())
 		{
-			tile.getBoss().addSolde(tile.getPrix());
-			joueur.addSolde((-1)*tile.getPrix());
-		}
 		
+			case 2:
+				if(tile.getBoss() != joueur)
+				{
+					tile.getBoss().addSolde(tile.getPrix());
+					joueur.addSolde((-1)*tile.getPrix());
+				}
+				
+			case 3:
+				{
+					switch(tile.getAdresse())
+					{
+						
+					}
+				}
+		}
 	}
+
 	
 }

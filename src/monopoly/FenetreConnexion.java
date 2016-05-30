@@ -22,7 +22,7 @@ public class FenetreConnexion extends JFrame implements ActionListener
 {
     
 	private JTextField saisie;
-    private JRadioButton b1, b2, b3, b4; 
+    private JRadioButton rouge, vert, bleu, jaune; 
     private ButtonGroup radio;
     private FenetreJeu fenetreJeu;
     private FenetreConnexion fenetreConnexion;
@@ -50,30 +50,29 @@ public class FenetreConnexion extends JFrame implements ActionListener
 		
 		this.saisie = new JTextField(10);
 		saisie.addActionListener(this);
-		saisie.setActionCommand("SAISIE");
 		this.add(saisie);
 		
 		JLabel label3 = new JLabel ("Choisissez une couleur :");
 	    this.add(label3);
 		
-	    b1 = new JRadioButton("bleu");
-		b1.addActionListener(this);
-		this.add(b1);
-		b2 = new JRadioButton("rouge");
-		b2.addActionListener(this);
-		this.add(b2);
-		b3 = new JRadioButton("vert");
-		b3.addActionListener(this);
-		this.add(b3);
-		b4 = new JRadioButton ("jaune"); 
-		b4.addActionListener(this);
-		this.add(b4);
+	    bleu = new JRadioButton("bleu");
+		bleu.addActionListener(this);
+		this.add(bleu);
+		rouge = new JRadioButton("rouge");
+		rouge.addActionListener(this);
+		this.add(rouge);
+		vert = new JRadioButton("vert");
+		vert.addActionListener(this);
+		this.add(vert);
+		jaune = new JRadioButton ("jaune"); 
+		jaune.addActionListener(this);
+		this.add(jaune);
 		
 		radio = new ButtonGroup();
-		radio.add(b1);
-		radio.add(b2);
-		radio.add(b3);
-		radio.add(b4);
+		radio.add(bleu);
+		radio.add(rouge);
+		radio.add(vert);
+		radio.add(jaune);
 	    
 	    JButton suivant = new JButton("Créer le joueur");
 		suivant.addActionListener(this);
@@ -96,31 +95,32 @@ public class FenetreConnexion extends JFrame implements ActionListener
 	{	
 		switch(e.getActionCommand())
 		{
-			case "bleu":
-			{
-				couleur = Color.BLUE;
-				break;
-			}
-			case "rouge":
-			{
-				couleur = Color.RED;
-				break;
-			}
-			case "vert":
-			{
-				couleur = Color.GREEN;
-				break;
-			}
-			case "jaune":
-			{
-				couleur = Color.YELLOW;
-				break;
-			}
+			
 			case "Créer le joueur":
-			{			
+			{		
 				String valeur = saisie.getText();
 				try 
 				{
+					if (bleu.isSelected())
+					{
+						couleur = Color.BLUE;
+					}
+					else if (rouge.isSelected())
+					{
+						couleur = Color.RED;
+					}
+					else if (vert.isSelected())
+					{
+						couleur = Color.GREEN;
+					}
+					else if (jaune.isSelected())
+					{
+						couleur = Color.YELLOW;
+					}
+					else
+					{
+						System.out.println("Choisissez une couleur");
+					}
 					monopolyInterface.setJoueur(couleur,valeur);
 					monNumero = monopolyInterface.getJoueurs().size();
 					ceJoueur = monopolyInterface.getJoueurs().get(monNumero);
