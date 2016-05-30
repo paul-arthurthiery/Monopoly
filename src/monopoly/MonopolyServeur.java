@@ -1,4 +1,4 @@
-package monopoly;
+
 
 import java.awt.Color;
 import java.io.BufferedReader;

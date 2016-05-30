@@ -11,6 +11,7 @@ public class CaseStandard extends Case
 	//0 : case vide --- (0,0,null,occupation) ;
 	//1 : possible d'acheter la case --- (1,0,null,occupation) ;
 	//2 : case déjà acheté par boss --- (2,maison,boss,occupation);
+	//3 : case spéciale
 	private int maison;
 	private Joueur boss;
 	private TreeMap<Integer,Joueur> occupation;

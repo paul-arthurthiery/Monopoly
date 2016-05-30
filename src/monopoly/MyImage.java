@@ -1,4 +1,4 @@
-package monopoly;
+
 
 import java.awt.Dimension;
 import java.awt.Graphics;
